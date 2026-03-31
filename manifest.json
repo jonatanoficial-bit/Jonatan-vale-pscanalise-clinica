@@ -1,7 +1,7 @@
 {
-  "name": "Jonatan Vale | Psicanálise",
+  "name": "Jonatan Vale | Psicanálise Clínica Online",
   "short_name": "Jonatan Vale",
-  "description": "Psicanálise clínica online com atendimento profissional, WhatsApp e pedido de horário via Google Agenda.",
+  "description": "Atendimento clínico em psicanálise 100% online com agendamento pelo WhatsApp.",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#07111d",
