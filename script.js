@@ -13,3 +13,26 @@ document.getElementById('calendarForm')?.addEventListener('submit', (e) => {
   const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(text)}&dates=${toGCal(start)}/${toGCal(end)}&details=${details}`;
   window.open(url, '_blank');
 });
+
+let deferredPrompt = null;
+const installBtn = document.getElementById('installBtn');
+const installBtnHero = document.getElementById('installBtnHero');
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  if (installBtn) installBtn.hidden = false;
+  if (installBtnHero) installBtnHero.hidden = false;
+});
+
+async function triggerInstall() {
+  if (!deferredPrompt) return;
+  deferredPrompt.prompt();
+  await deferredPrompt.userChoice;
+  deferredPrompt = null;
+  if (installBtn) installBtn.hidden = true;
+  if (installBtnHero) installBtnHero.hidden = true;
+}
+
+if (installBtn) installBtn.addEventListener('click', triggerInstall);
+if (installBtnHero) installBtnHero.addEventListener('click', triggerInstall);
